@@ -1,0 +1,67 @@
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.list-item {
+  width: 400px;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-item + .list-item {
+  border-top: 1px solid #ddd;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+*::after, *::before {
+	box-sizing: border-box;
+}
+
+.toggler input {
+	position: absolute;
+	opacity: 0;
+}
+
+.visible-checkbox {
+	position: relative;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	border: 2px solid #aaa;
+}
+
+.tick {
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	background-color: #aaa;
+}
+
+.toggler input + .visible-checkbox .tick {
+	opacity: 0;
+	transition: opacity 0.5s;
+}
+
+.toggler input:checked + .visible-checkbox .tick {
+	opacity: 1;
+}
+
+.counters {
+  width: 400px;
+  background-color: lightgrey;
+  border: 1px solid darkgrey;
+  border-radius: 3px;
+  padding: 1px 10px;
+  display: flex;
+  justify-content: space-between;
+}
