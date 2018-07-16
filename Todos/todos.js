@@ -25,7 +25,7 @@
       n.content = todos[x].content;
       n.checked = todos[x].checked;
       out.push(n);
-      }
+    }
     todos = out;
     return todos;
   }
@@ -122,10 +122,12 @@
     let init, bool;
     if (arg == 'compl') {
       init = '.completed .counter';
-      bool = true; }
+      bool = true;
+    }
     else {
       init = '.notCompleted .counter';
-      bool = false; }
+      bool = false;
+    }
     let sp = document.querySelector(init), count = 0;
     for (let x = 0; x < todos.length; x++) {
       if (todos[x].checked == bool)
