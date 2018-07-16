@@ -58,11 +58,10 @@
       let text = document.createTextNode(todos[item].content + ' ');
       li.innerHTML = sp;
       let checkbox = li.querySelector('.toggler input');
-      let tick = li.querySelector('.toggler .tick');
-      tick.addEventListener('click', function() {
+      checkbox.addEventListener('change', function() {
         let el = getElFromTodos(li.id);
-        el.checked = !checkbox.checked;
-        renderList(list);
+          el.checked = checkbox.checked;
+          renderList(list);
       });
       checkbox.checked = todos[item].checked;
       li.firstChild.appendChild(text);
