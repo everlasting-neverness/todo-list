@@ -36,7 +36,7 @@
 
   function clearList(list) {
     while (list.children.length != 0) {
-	      list.firstChild.remove();
+      list.firstChild.remove();
     }
   };
 
@@ -51,31 +51,30 @@
     clearList(list);
     todos = generateId(todos);
     for (let item = 0; item < todos.length; item++) {
-        let li = document.createElement('li');
-        li.setAttribute('class', 'list-item');
-        li.setAttribute('id', String(item));
-        let sp = getToggler();
-        let text = document.createTextNode(todos[item].content + ' ');
-        li.innerHTML = sp;
-        // console.log(li);
-        let checkbox = li.querySelector('.toggler input');
-        let tick = li.querySelector('.toggler .tick');
-        tick.addEventListener('click', function() {
-            let el = getElFromTodos(li.id);
-            el.checked = !checkbox.checked;
-            renderList(list);
-        });
-        checkbox.checked = todos[item].checked;
-        li.firstChild.appendChild(text);
-        let but = document.createElement('button');
-        but.innerHTML = '&times;';
-        but.addEventListener('click', function() {
-          let todos_id = but.parentElement.id;
-          deleteId(todos, todos_id);
-          renderList(list);
-        });
-        li.appendChild(but);
-        list.appendChild(li);
+      let li = document.createElement('li');
+      li.setAttribute('class', 'list-item');
+      li.setAttribute('id', String(item));
+      let sp = getToggler();
+      let text = document.createTextNode(todos[item].content + ' ');
+      li.innerHTML = sp;
+      let checkbox = li.querySelector('.toggler input');
+      let tick = li.querySelector('.toggler .tick');
+      tick.addEventListener('click', function() {
+        let el = getElFromTodos(li.id);
+        el.checked = !checkbox.checked;
+        renderList(list);
+      });
+      checkbox.checked = todos[item].checked;
+      li.firstChild.appendChild(text);
+      let but = document.createElement('button');
+      but.innerHTML = '&times;';
+      but.addEventListener('click', function() {
+        let todos_id = but.parentElement.id;
+        deleteId(todos, todos_id);
+        renderList(list);
+      });
+      li.appendChild(but);
+      list.appendChild(li);
     };
     counter('notCompl');
     counter('compl');
@@ -86,12 +85,12 @@
 
   function getToggler() {
     return `<span class="toggler">
-            	<label>
-            		<input type="checkbox">
-            		<span class="visible-checkbox">
-            			<span class="tick"></span>
-            		</span>
-            	</label>
+              <label>
+                <input type="checkbox">
+                <span class="visible-checkbox">
+                  <span class="tick"></span>
+                </span>
+              </label>
             </span>`;
   };
 
