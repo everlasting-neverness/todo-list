@@ -6,8 +6,8 @@ function getUniqueNumber() {
   return a;
 }
 
-console.log(getUniqueNumber()); // 1
-console.log(getUniqueNumber()); // 2
-console.log(getUniqueNumber()); // 3
-console.log(getUniqueNumber()); // 4
-console.log(getUniqueNumber()); // 5
+// console.log(getUniqueNumber()); // 1
+// console.log(getUniqueNumber()); // 2
+// console.log(getUniqueNumber()); // 3
+// console.log(getUniqueNumber()); // 4
+// console.log(getUniqueNumber()); // 5

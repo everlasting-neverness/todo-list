@@ -7,12 +7,14 @@ function ListItem(props) {
         h('input', {
           type: 'checkbox',
           checked: props.todo.checked,
-          // onchange: changeHandler,
+          onchange: props.onChange,
         }),
         h('span.visible-checkbox', [h('span.tick')]),
       ]),
-      props.todo.content,
+      h('span.content', props.todo.content),
     ]),
-    h('button', 'X'),
+    h('button', {
+      onclick: props.onRemove,
+    }, 'X'),
   ]);
 }

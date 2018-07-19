@@ -30,10 +30,7 @@
     form.reset();
   }
 
-  var todos = [
-    { checked: true, content: 'hello' },
-    { checked: false, content: 'world' },
-  ];
+  var todos = [];
 
   function render() {
     clearElement(app);
@@ -54,14 +51,25 @@
           todos.map(function(todo) {
             return ListItem({
               todo: todo,
-              onChange: function() {},
-              onRemove: function() {},
-            });
+              onChange: function() {
+                todo.checked = this.checked;
+                render();
+              },
+              onRemove: function() {
+                for (let i = 0; i < todos.length; i++) {
+                  if (todos[i].id == todo.id) {
+                    todos.splice(i,1);
+                  }
+                }
+                render();
+                }
+              },
+            );
           }),
         ),
         h('div.counters', [
-          h('span.completed', ['completed: ', h('span.counter', ['0'])]),
-          h('span.notCompleted', ['not completed: ', h('span.counter', ['0'])]),
+          h('span.completed', ['completed: ', h('span.counter', [taskCounters()[0]])]),
+          h('span.notCompleted', ['not completed: ', h('span.counter', [taskCounters()[1]])]),
         ]),
       ),
     );
@@ -77,4 +85,18 @@
     }
     return arr;
   }
+
+  function taskCounters() {
+    let completedCounter = 0;
+    let notCompletedCounter = 0;
+    for (let i = 0; i < todos.length; i++) {
+      if (todos[i].checked) {
+        completedCounter += 1;
+      } else {
+        notCompletedCounter += 1;
+      }
+    }
+    return [completedCounter, notCompletedCounter];
+  }
+
 })();

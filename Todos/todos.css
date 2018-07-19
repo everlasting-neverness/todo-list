@@ -65,3 +65,7 @@
   display: flex;
   justify-content: space-between;
 }
+
+.toggler .content {
+  margin-left: 5px;
+}
