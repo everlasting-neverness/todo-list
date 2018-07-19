@@ -13,17 +13,17 @@
     }
   }
 
-  let app = document.getElementById('TodosApp');
+  let app = document.getElementById("TodosApp");
 
   function handleSubmit(event) {
     event.preventDefault();
-    let list = document.querySelector('.list');
-    let form = document.querySelector('form');
+    let list = document.querySelector(".list");
+    let form = document.querySelector("form");
     let input = form.elements.info;
     let newTodoEntry = {
       id: getUniqueNumber(),
       checked: false,
-      content: input.value,
+      content: input.value
     };
     todos.unshift(newTodoEntry);
     render();
@@ -34,20 +34,20 @@
 
   function render() {
     clearElement(app);
-
+    let counters = taskCounters();
     app.querySelector;
     app.appendChild(
       h(
-        'div',
+        "div",
         h(
-          'form',
+          "form",
           {
-            onsubmit: handleSubmit,
+            onsubmit: handleSubmit
           },
-          [h('input', { type: 'text', name: 'info' }), h('button', ['save'])],
+          [h("input", { type: "text", name: "info" }), h("button", ["save"])]
         ),
         h(
-          'ul.list',
+          "ul.list",
           todos.map(function(todo) {
             return ListItem({
               todo: todo,
@@ -58,20 +58,25 @@
               onRemove: function() {
                 for (let i = 0; i < todos.length; i++) {
                   if (todos[i].id == todo.id) {
-                    todos.splice(i,1);
+                    todos.splice(i, 1);
                   }
                 }
                 render();
-                }
-              },
-            );
-          }),
+              }
+            });
+          })
         ),
-        h('div.counters', [
-          h('span.completed', ['completed: ', h('span.counter', [taskCounters()[0]])]),
-          h('span.notCompleted', ['not completed: ', h('span.counter', [taskCounters()[1]])]),
-        ]),
-      ),
+        h("div.counters", [
+          h("span.completed", [
+            "completed: ",
+            h("span.counter", [counters.completedCounter])
+          ]),
+          h("span.notCompleted", [
+            "not completed: ",
+            h("span.counter", [counters.notCompletedCounter])
+          ])
+        ])
+      )
     );
   }
 
@@ -96,7 +101,9 @@
         notCompletedCounter += 1;
       }
     }
-    return [completedCounter, notCompletedCounter];
+    return {
+      completedCounter: completedCounter,
+      notCompletedCounter: notCompletedCounter
+    };
   }
-
 })();
